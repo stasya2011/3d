@@ -54,7 +54,7 @@ const Home = () => {
             groundColor={"#000"}
             intensity={2}
           />
-          <Bird />
+          <Bird isRotating={isRotating} />
           <Plane
             position={planePosition}
             scale={planeScale}

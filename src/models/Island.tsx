@@ -117,7 +117,7 @@ export function Island(props: any) {
     if (!isRotating) {
       rotationSpeed.current *= dampingFactor;
 
-      if (Math.abs(rotationSpeed.current) < 0.01) {
+      if (Math.abs(rotationSpeed.current) < 0.001) {
         rotationSpeed.current = 0;
       }
       if (islandRef.current) {

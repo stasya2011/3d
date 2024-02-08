@@ -1,10 +1,46 @@
-import { useGLTF } from "@react-three/drei";
+import { useEffect, useRef } from "react";
+import { useAnimations, useGLTF } from "@react-three/drei";
 import birdScene from "../assets/3d/bird.glb";
+import { useFrame } from "@react-three/fiber";
+import { Mesh } from "three";
 
-const Bird = () => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Bird = (props: any) => {
+  const ref = useRef<Mesh>(null);
   const { scene, animations } = useGLTF(birdScene);
+  const { actions } = useAnimations(animations, ref);
+  const { isRotating } = props;
+
+  useEffect(() => {
+    if (isRotating && actions) {
+      actions[animations[0].name]?.play();
+    } else {
+      actions[animations[0].name]?.stop();
+    }
+  });
+
+  useFrame((state) => {
+    const { camera, clock } = state;
+
+    if (isRotating && ref.current) {
+      ref.current.position.y = Math.sin(clock.elapsedTime) * 0.2 + 2;
+      if (ref.current.position.x > camera.position.x + 10) {
+        ref.current.position.y = Math.PI;
+      } else if (ref.current.position.x < camera.position.x - 10) {
+        ref.current.position.y = 0;
+      }
+
+      if (ref.current.rotation.y === 0) {
+        ref.current.position.x += 0.01;
+        ref.current.position.z -= 0.01;
+      } else {
+        ref.current.position.x -= 0.01;
+        ref.current.position.z += 0.01;
+      }
+    }
+  });
   return (
-    <mesh position={[-5, 2, 1]} scale={[0.003, 0.003, 0.003]}>
+    <mesh position={[-5, 2, 1]} scale={[0.003, 0.003, 0.003]} ref={ref}>
       <primitive object={scene}></primitive>
     </mesh>
   );
