@@ -5,6 +5,7 @@ import Sky from "../models/Sky";
 import Bird from "../models/Bird";
 import Plane from "../models/Plane";
 import Loader from "../components/Loader";
+import HomeInfo from "../components/HomeInfo";
 
 const Home = () => {
   const [isRotating, setIsRotating] = useState(false);
@@ -40,6 +41,9 @@ const Home = () => {
 
   return (
     <section className="w-full h-screen relative">
+      <div className="absolute top-20 left-0 right-0 z-10 flex justify-center">
+        {currentStage && <HomeInfo currentStage={currentStage} />}
+      </div>
       <Canvas
         className={`w-full, h-screen, bg-transparent ${
           isRotating ? "cursor-grabbing" : "cursor-grab"
@@ -54,14 +58,15 @@ const Home = () => {
             groundColor={"#000"}
             intensity={2}
           />
-          <Bird isRotating={isRotating} />
+          <Bird />
+          <Sky isRotating={isRotating} />
           <Plane
             position={planePosition}
             scale={planeScale}
             rotation={[0, 20, 0]}
             isRotating={isRotating}
           />
-          <Sky isRotating={isRotating} />
+
           <Island
             position={islandPosition}
             rotation={rotation}
