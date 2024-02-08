@@ -1,6 +1,6 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
-import planeScene from "../assets/3d/plane.glb";
 import { useEffect, useRef } from "react";
+import planeScene from "../assets/3d/plane.glb";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Plane = (props: any) => {

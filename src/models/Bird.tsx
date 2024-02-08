@@ -1,8 +1,8 @@
 import { useEffect, useRef } from "react";
 import { useAnimations, useGLTF } from "@react-three/drei";
-import birdScene from "../assets/3d/bird.glb";
 import { useFrame } from "@react-three/fiber";
 import { Mesh } from "three";
+import birdScene from "../assets/3d/bird.glb";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const Bird = (props: any) => {
