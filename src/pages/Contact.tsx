@@ -1,5 +1,8 @@
-import React, { useRef, useState } from "react";
+import React, { Suspense, useRef, useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import { Loader } from "@react-three/drei";
 import emailjs from "@emailjs/browser";
+import Fox from "../models/Fox";
 
 interface IForm {
   name: string;
@@ -11,9 +14,14 @@ const Contact = () => {
   const formRef = useRef(null);
   const [form, setForm] = useState<IForm>({ name: "", email: "", message: "" });
   const [isLoading, setIsLaoding] = useState(false);
+  const [currentAnimation, setCurrentAnimation] = useState("idle");
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => setForm({ ...form, [e.target.name]: e.target.value });
+
+  const handleBlur = () => setCurrentAnimation("hit");
+  const handleFocus = () => setCurrentAnimation("walk");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -47,6 +55,8 @@ const Contact = () => {
           ref={formRef}
           className="w-full flex flex-col gap-7 mt-14"
           onSubmit={handleSubmit}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
         >
           <label className="text-black-500 font-semibold">
             Name
@@ -88,6 +98,26 @@ const Contact = () => {
             {isLoading ? "Loading..." : "Send message"}
           </button>
         </form>
+      </div>
+      <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
+        <Canvas camera={{ position: [0, 0, 5] }}>
+          <directionalLight position={[0, 0, 1]} intensity={2.5} />
+          <ambientLight intensity={1} />
+          <pointLight position={[5, 10, 0]} intensity={2} />
+          <spotLight
+            position={[10, 10, 10]}
+            angle={0.15}
+            penumbra={1}
+            intensity={2}
+          />
+          <Fox
+            position={[0.5, 0.35, 0]}
+            rotation={[12.629, -0.6, 0]}
+            scale={[0.5, 0.5, 0.5]}
+            currentAnimation={currentAnimation}
+          />
+          <Suspense fallback={<Loader />} />
+        </Canvas>
       </div>
     </section>
   );
