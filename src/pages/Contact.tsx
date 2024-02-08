@@ -85,9 +85,8 @@ const Contact = () => {
             />
           </label>
           <button type="submit" className="btn" disabled={isLoading}>
-            Submit
+            {isLoading ? "Loading..." : "Send message"}
           </button>
-          {isLoading ? "Loading..." : "Thanks/"}
         </form>
       </div>
     </section>
