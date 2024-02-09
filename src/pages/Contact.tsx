@@ -1,8 +1,10 @@
 import React, { Suspense, useRef, useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Loader } from "@react-three/drei";
+import useAlert from "../hooks/useAlert";
 import emailjs from "@emailjs/browser";
 import Fox from "../models/Fox";
+import Alert from "../components/Alert";
 
 interface IForm {
   name: string;
@@ -15,14 +17,13 @@ const Contact = () => {
   const [form, setForm] = useState<IForm>({ name: "", email: "", message: "" });
   const [isLoading, setIsLaoding] = useState(false);
   const [currentAnimation, setCurrentAnimation] = useState("idle");
-
+  const { alert, showAlert, hideAlert } = useAlert();
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => setForm({ ...form, [e.target.name]: e.target.value });
 
   const handleBlur = () => setCurrentAnimation("hit");
   const handleFocus = () => setCurrentAnimation("walk");
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLaoding(true);
@@ -40,15 +41,26 @@ const Contact = () => {
         },
         import.meta.env.VITE_KEY_PUBLIC_KEY
       )
-      .then(() => setIsLaoding(false))
+      .then(() => {
+        setIsLaoding(false);
+        showAlert({ text: "Thank you for your message 😃", type: "success" });
+
+        setTimeout(() => {
+          setForm({ name: "", email: "", message: "" });
+          setCurrentAnimation("idle");
+          hideAlert();
+        }, 3000);
+      })
       .catch((err: React.ErrorInfo) => {
         setIsLaoding(false);
         console.log(err);
+        showAlert({ text: "I didn't recive your message.", type: "danger" });
       });
   };
 
   return (
     <section className="relative flex lg:flex-row flex-col max-container">
+      {alert.isShow && <Alert {...alert} />}
       <div className="flex-1 min-w-[50%] flex flex-col">
         <h1 className="head-text">Get in Touch</h1>
         <form
@@ -100,7 +112,7 @@ const Contact = () => {
         </form>
       </div>
       <div className="lg:w-1/2 w-full lg:h-auto md:h-[550px] h-[350px]">
-        <Canvas camera={{ position: [0, 0, 5] }}>
+        <Canvas camera={{ position: [0, 0, 5], fov: 75, near: 0.1, far: 1000 }}>
           <directionalLight position={[0, 0, 1]} intensity={2.5} />
           <ambientLight intensity={1} />
           <pointLight position={[5, 10, 0]} intensity={2} />
