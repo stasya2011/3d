@@ -9,6 +9,7 @@ import HomeInfo from "../components/HomeInfo";
 import sakura from "../assets/sakura.mp3";
 import soundon from "../assets/icons/soundon.png";
 import soundoff from "../assets/icons/soundoff.png";
+import { IPosition } from "../types";
 
 const Home = () => {
   const audioRef = useRef(new Audio(sakura));
@@ -16,7 +17,7 @@ const Home = () => {
   audioRef.current.loop = true;
   const [isPlayingMusic, setIsPlayingMusic] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
-  const [currentStage, setCurrentStage] = useState(1);
+  const [currentStage, setCurrentStage] = useState<number | null>(1);
 
   useEffect(() => {
     if (isPlayingMusic) {
@@ -29,10 +30,10 @@ const Home = () => {
   const toggleMusic = () =>
     setIsPlayingMusic((prevState: boolean) => !prevState);
 
-  const adjustIslandForScreenSize = () => {
-    let screenScale: number[] | null = null;
-    const screenPosition = [0, -6.5, -43];
-    const rotation = [0.1, 4.7, 0];
+  const adjustIslandForScreenSize = (): IPosition[] => {
+    let screenScale: IPosition | null = null;
+    const screenPosition: IPosition = [0, -6.5, -43];
+    const rotation: IPosition = [0.1, 4.7, 0];
 
     if (window.innerWidth < 768) {
       screenScale = [0.9, 0.9, 0.9];
@@ -42,8 +43,8 @@ const Home = () => {
     return [screenScale, screenPosition, rotation];
   };
 
-  const adjustPlaneForScreenSize = () => {
-    let screenScale, screenPosition;
+  const adjustPlaneForScreenSize = (): IPosition[] => {
+    let screenScale: IPosition, screenPosition: IPosition;
 
     if (window.innerWidth < 768) {
       screenScale = [1.5, 1.5, 1.5];

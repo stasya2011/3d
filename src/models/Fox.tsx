@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import { useGLTF, useAnimations } from "@react-three/drei";
+import { IFox } from "../types";
 import foxScene from "../assets/3d/fox.glb";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Fox = (props: any) => {
-  const group = useRef();
+const Fox = (props: IFox) => {
+  const group = useRef(null);
   const { nodes, materials, animations } = useGLTF(foxScene);
   const { actions } = useAnimations(animations, group);
   const { currentAnimation } = props;
@@ -16,7 +16,7 @@ const Fox = (props: any) => {
   }, [actions, currentAnimation]);
 
   return (
-    <group ref={group} {...props} dispose={null}>
+    <group dispose={null} {...props} ref={group}>
       <group name="Sketchfab_Scene">
         <primitive object={nodes.GLTF_created_0_rootJoint} />
         <skinnedMesh

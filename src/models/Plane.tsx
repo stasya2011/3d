@@ -1,10 +1,10 @@
 import { useAnimations, useGLTF } from "@react-three/drei";
 import { useEffect, useRef } from "react";
+import { IPlane } from "../types";
 import planeScene from "../assets/3d/plane.glb";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const Plane = (props: any) => {
-  const ref = useRef();
+const Plane = (props: IPlane) => {
+  const ref = useRef(null);
   const { scene, animations } = useGLTF(planeScene);
   const { actions } = useAnimations(animations, ref);
   const { isRotating } = props;

@@ -2,12 +2,12 @@ import { useCallback, useEffect, useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 import { a } from "@react-spring/three";
 import { useFrame, useThree } from "@react-three/fiber";
-import { Mesh as ThreeMesh } from "three";
+import { Group } from "three";
+import { IIsland } from "../types";
 import islandScreen from "../assets/island.glb";
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export function Island(props: any) {
-  const islandRef = useRef<ThreeMesh>();
+export function Island(props: IIsland) {
+  const islandRef = useRef<Group>(null);
   const { isRotating, setIsRotating, setCurrentStage } = props;
   const { gl, viewport } = useThree();
   const { nodes, materials } = useGLTF(islandScreen);

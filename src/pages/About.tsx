@@ -48,7 +48,11 @@ const About = () => {
       <div className="py-16">
         <h3 className="subhead-text">Work Experience</h3>
         <div className="mt-5 flex flex-col gap-3 text-slate-500">
-          <p>Frontend developer...</p>
+          <p>
+            I have only worked in one company. My latest project involved
+            creating a website for German news. During this project, I used
+            React.js, TypeScript, and Next.js.
+          </p>
         </div>
         <div className="mt-12 flex">
           <VerticalTimeline>
