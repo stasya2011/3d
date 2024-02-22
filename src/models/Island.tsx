@@ -93,11 +93,13 @@ export function Island(props: any) {
         if (!isRotating) setIsRotating(true);
         if (islandRef.current) {
           islandRef.current.rotation.y += 0.1 * Math.PI;
+          rotationSpeed.current = 0.0125;
         }
       } else {
         if (!isRotating) setIsRotating(true);
         if (islandRef.current) {
           islandRef.current.rotation.y += 0.1 * Math.PI;
+          rotationSpeed.current = -0.0125;
         }
       }
     },
@@ -130,7 +132,6 @@ export function Island(props: any) {
         const normalizedRotation =
           ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
 
-        // Set the current stage based on the island's orientation
         switch (true) {
           case normalizedRotation >= 5.45 && normalizedRotation <= 5.85:
             setCurrentStage(4);
