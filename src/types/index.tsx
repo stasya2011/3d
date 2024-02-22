@@ -6,3 +6,11 @@ export interface IExperiences {
   date: string;
   points: string[];
 }
+
+export interface IProject {
+  iconUrl: string;
+  theme: string;
+  name: string;
+  description: string;
+  link: string;
+}

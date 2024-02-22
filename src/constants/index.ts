@@ -1,9 +1,7 @@
 import { epam } from "../assets/images/index.ts";
 import {
-  car,
   contact,
   css,
-  estate,
   git,
   github,
   html,
@@ -16,13 +14,12 @@ import {
   redux,
   sass,
   snapgram,
-  summiz,
   tailwindcss,
   threads,
   typescript,
 } from "../assets/icons";
 
-import { IExperiences } from "../types";
+import { IExperiences, IProject } from "../types";
 
 export const skills = [
   {
@@ -132,62 +129,54 @@ export const socialLinks = [
   {
     name: "GitHub",
     iconUrl: github,
-    link: "https://github.com/YourGitHubUsername",
+    link: "https://github.com/stasya2011",
   },
   {
     name: "LinkedIn",
     iconUrl: linkedin,
-    link: "https://www.linkedin.com/in/YourLinkedInUsername",
+    link: "https://www.linkedin.com/in/stasya-geleisha/",
   },
 ];
 
-export const projects = [
+export const projects: IProject[] = [
   {
     iconUrl: pricewise,
     theme: "btn-back-red",
-    name: "Amazon Price Tracker",
+    name: "Task-calendar app",
     description:
-      "Developed a web application that tracks and notifies users of price changes for products on Amazon, helping users find the best deals.",
-    link: "https://github.com/adrianhajdin/pricewise",
+      "The project utilizes a robust tech stack, featuring React for powerful front-end development, TypeScript for enhanced type safety and productivity, Redux Toolkit for efficient state management, Charts.js for data visualization, and Day.js for flexible date and time handling.",
+    link: "https://github.com/stasya2011/timetable",
   },
   {
     iconUrl: threads,
     theme: "btn-back-green",
-    name: "Full Stack Threads Clone",
+    name: "Movie flix",
     description:
-      'Created a full-stack replica of the popular discussion platform "Threads," enabling users to post and engage in threaded conversations.',
-    link: "https://github.com/adrianhajdin/threads",
-  },
-  {
-    iconUrl: car,
-    theme: "btn-back-blue",
-    name: "Car Finding App",
-    description:
-      "Designed and built a mobile app for finding and comparing cars on the market, streamlining the car-buying process.",
-    link: "https://github.com/adrianhajdin/project_next13_car_showcase",
+      "The project leverages a modern tech stack, including React for building dynamic user interfaces, TypeScript for type safety and enhanced development experience, and Redux Toolkit for state management.",
+    link: "https://github.com/stasya2011/movieFlix",
   },
   {
     iconUrl: snapgram,
     theme: "btn-back-pink",
-    name: "Full Stack Instagram Clone",
+    name: "Business card",
     description:
-      "Built a complete clone of Instagram, allowing users to share photos and connect with friends in a familiar social media environment.",
-    link: "https://github.com/adrianhajdin/social_media_app",
+      "The project was built with React, Next.js, and TypeScript, utilizing the Swiper library for sliders..",
+    link: "https://github.com/stasya2011/business-card",
   },
-  {
-    iconUrl: estate,
-    theme: "btn-back-black",
-    name: "Real-Estate Application",
-    description:
-      "Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.",
-    link: "https://github.com/adrianhajdin/projects_realestate",
-  },
-  {
-    iconUrl: summiz,
-    theme: "btn-back-yellow",
-    name: "AI Summarizer Application",
-    description:
-      "App that leverages AI to automatically generate concise & informative summaries from lengthy text content, or blogs.",
-    link: "https://github.com/adrianhajdin/project_ai_summarizer",
-  },
+  // {
+  //   iconUrl: estate,
+  //   theme: "btn-back-black",
+  //   name: "Real-Estate Application",
+  //   description:
+  //     "Developed a web application for real estate listings, facilitating property searches and connecting buyers with sellers.",
+  //   link: "https://github.com/adrianhajdin/projects_realestate",
+  // },
+  // {
+  //   iconUrl: summiz,
+  //   theme: "btn-back-yellow",
+  //   name: "AI Summarizer Application",
+  //   description:
+  //     "App that leverages AI to automatically generate concise & informative summaries from lengthy text content, or blogs.",
+  //   link: "https://github.com/adrianhajdin/project_ai_summarizer",
+  // },
 ];

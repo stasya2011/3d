@@ -4,7 +4,7 @@ import Navigate from "./components/Navigate";
 
 function App() {
   return (
-    <main className="bg-slate-300/50 ">
+    <main className="bg-slate-300/50 h-full">
       <Router>
         <Navigate />
         <Routes>
